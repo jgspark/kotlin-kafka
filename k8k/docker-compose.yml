@@ -16,13 +16,3 @@ services:
             KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
-    kafka-ui:
-        image: provectuslabs/kafka-ui
-        container_name: kafka-ui
-        ports:
-            - "7000:8080"
-        environment:
-            KAFKA_CLUSTERS_0_ZOOKEEPER: 127.0.0.1:2181
-            KAFKA_CLUSTERS_0_NAME: 127.0.0.1
-            KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: 127.0.0.1:9092
-#https://devfunny.tistory.com/442
