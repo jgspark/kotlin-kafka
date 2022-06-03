@@ -1,0 +1,28 @@
+version: '2'
+services:
+    zookeeper:
+        image: wurstmeister/zookeeper
+        container_name: zookeeper
+        ports:
+            - "2181:2181"
+    kafka:
+        image: wurstmeister/kafka
+        container_name: kafka
+        ports:
+            - "9092:9092"
+        environment:
+            KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
+            KAFKA_CREATE_TOPICS: "test:1:1"
+            KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+    kafka-ui:
+        image: provectuslabs/kafka-ui
+        container_name: kafka-ui
+        ports:
+            - "7000:8080"
+        environment:
+            KAFKA_CLUSTERS_0_ZOOKEEPER: 127.0.0.1:2181
+            KAFKA_CLUSTERS_0_NAME: 127.0.0.1
+            KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: 127.0.0.1:9092
+#https://devfunny.tistory.com/442

@@ -9,5 +9,4 @@ class KotlinKafkaApplicationTests {
     @Test
     fun contextLoads() {
     }
-
 }
