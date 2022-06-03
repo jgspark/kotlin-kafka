@@ -13,12 +13,12 @@ import org.springframework.kafka.core.KafkaTemplate
 class ProducerConfiguration {
 
     @Bean
-    fun defaultKafkaProducerFactory(): DefaultKafkaProducerFactory<String, Any> {
-        return DefaultKafkaProducerFactory<String, Any>(getConfig())
+    fun defaultKafkaProducerFactory(): DefaultKafkaProducerFactory<String, String> {
+        return DefaultKafkaProducerFactory<String, String>(getConfig())
     }
 
     @Bean
-    fun kafkaTemplate(): KafkaTemplate<String, Any> = KafkaTemplate(defaultKafkaProducerFactory())
+    fun kafkaTemplate(): KafkaTemplate<String, String> = KafkaTemplate(defaultKafkaProducerFactory())
 
     private fun getConfig(): Map<String, Any> = mapOf(
         ProducerConfig.BOOTSTRAP_SERVERS_CONFIG to "127.0.0.1:9092",
