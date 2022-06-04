@@ -1,4 +1,4 @@
-package com.example.kotlinkafka.producer
+package com.example.kotlinkafka.service.producer
 
 import com.example.kotlinkafka.constants.TopicNames.Companion.testTopic
 import com.fasterxml.jackson.core.JsonProcessingException

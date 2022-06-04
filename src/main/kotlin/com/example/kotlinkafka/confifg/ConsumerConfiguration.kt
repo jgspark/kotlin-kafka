@@ -26,9 +26,9 @@ class ConsumerConfiguration {
     }
 
     private fun getConfiguration() = mapOf<String, Any>(
-        ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to "127.0.0.1:9092",
+        ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to "localhost:9092",
         ConsumerConfig.GROUP_ID_CONFIG to "groupOne",
-        ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class,
-        ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class
+        ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,
+        ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java
     )
 }

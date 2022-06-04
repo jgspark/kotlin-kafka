@@ -1,7 +1,7 @@
 package com.example.kotlinkafka.web
 
-import com.example.kotlinkafka.producer.TestDTO
-import com.example.kotlinkafka.producer.TestProducer
+import com.example.kotlinkafka.service.producer.TestDTO
+import com.example.kotlinkafka.service.producer.TestProducer
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RestController
 
