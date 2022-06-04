@@ -22,4 +22,4 @@ jobs:
                     reporter: github-pr-review
                     android: false
                     fail_on_error: true
-                    level: [ info,warning,error ]
+                    level: error
