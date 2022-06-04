@@ -9,7 +9,6 @@ jobs:
     ktlint:
         name: Check Code Quality
         runs-on: ubuntu-latest
-
         steps:
             -   name: Clone repo
                 uses: actions/checkout@main
@@ -21,6 +20,6 @@ jobs:
                 with:
                     github_token: ${{ secrets.github_token }}
                     reporter: github-pr-review
-                    android: true
+                    android: false
                     fail_on_error: true
-                    level: warning
+                    level: [ info,warning,error ]
