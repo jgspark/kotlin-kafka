@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service
 class TestProducer constructor(
     private val kafkaTemplate: KafkaTemplate<String, String>,
 ) {
+    
     private val testTopic: String = "testTopic"
 
     fun save(dto: TestDTO) {
