@@ -10,7 +10,7 @@ import org.springframework.kafka.core.KafkaTemplate
 
 @EnableKafka
 @Configuration
-class ProducerConfiguration {
+class ProducerConfiguration constructor(private val kafkaProperty: KafkaProperty) {
 
     @Bean
     fun defaultKafkaProducerFactory(): DefaultKafkaProducerFactory<String, String> {
@@ -21,7 +21,7 @@ class ProducerConfiguration {
     fun kafkaTemplate(): KafkaTemplate<String, String> = KafkaTemplate(defaultKafkaProducerFactory())
 
     private fun getConfig(): Map<String, Any> = mapOf(
-        ProducerConfig.BOOTSTRAP_SERVERS_CONFIG to "localhost:9092",
+        ProducerConfig.BOOTSTRAP_SERVERS_CONFIG to kafkaProperty.getFullIp(),
         ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG to StringSerializer::class.java,
         ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG to StringSerializer::class.java
     )

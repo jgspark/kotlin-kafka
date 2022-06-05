@@ -11,7 +11,9 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory
 
 @EnableKafka
 @Configuration
-class ConsumerConfiguration {
+class ConsumerConfiguration constructor(
+    private val kafkaProperty: KafkaProperty
+) {
 
     @Bean
     fun consumerFactory(): ConsumerFactory<String, Any> {
@@ -26,8 +28,8 @@ class ConsumerConfiguration {
     }
 
     private fun getConfiguration() = mapOf<String, Any>(
-        ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to "localhost:9092",
-        ConsumerConfig.GROUP_ID_CONFIG to "groupOne",
+        ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to kafkaProperty.getFullIp(),
+        ConsumerConfig.GROUP_ID_CONFIG to kafkaProperty.getGroupId(),
         ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,
         ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java
     )
