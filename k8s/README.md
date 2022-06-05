@@ -17,3 +17,8 @@ docker-compose -f ./k8k/docker-compose.yml up -d
 docker-compose -f ./k8s/docker-compose.yml down
 ```
 
+### 
+
+```bash
+docker exec -ti kafka /opt/kafka/bin/kafka-topics.sh --list --zookeeper zookeeper
+```
