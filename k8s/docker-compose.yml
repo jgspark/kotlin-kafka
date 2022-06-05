@@ -2,19 +2,20 @@ version: '2'
 services:
     # zookeeper setting
     zookeeper:
-        image: wurstmeister/zookeeper
+        image: wurstmeister/zookeeper:3.4.6
         container_name: zookeeper
         ports:
             - "2181:2181"
     # kafka setting
     kafka:
-        image: wurstmeister/kafka
+        image: wurstmeister/kafka:2.13-2.8.1
         container_name: kafka
         ports:
             - "9092:9092"
         environment:
             # 카프카 토픽 설정
-            KAFKA_CREATE_TOPICS: "testTopic"
+            # TopicName:Partition_Num:Replica_Num
+            KAFKA_CREATE_TOPICS: "testTopic:1:1"
             # 카프카 호스트 이름?
             KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
             # 주키퍼 커넥션 ip:port
@@ -23,7 +24,7 @@ services:
             - /var/run/docker.sock:/var/run/docker.sock
     # kafka manager setting
     kafka_manager:
-        image: hlebalbau/kafka-manager:stable
+        image: hlebalbau/kafka-manager:3.0.0.5-7e7a22e
         container_name: kafka_manager
         ports:
             - "9000:9000"
