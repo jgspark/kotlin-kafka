@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 class TestConsumer {
 
     @KafkaListener(topics = [testTopic])
-    fun testMessageConsumer() {
-        println("message success")
+    fun testMessageConsumer(message: String) {
+        println(message)
     }
 }
