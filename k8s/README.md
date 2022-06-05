@@ -14,6 +14,6 @@ docker-compose -f ./k8k/docker-compose.yml up -d
 ### Docker Compose Down
 
 ```bash 
-docker-compse down
+docker-compose -f ./k8s/docker-compose.yml down
 ```
 
