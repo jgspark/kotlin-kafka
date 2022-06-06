@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 /**
  * Any Data Change to String Data
  */
-fun convertOf(any: Any): String? {
+fun convertOf(any: Any?): String? {
     val objectMapper = ObjectMapper()
     var string: String? = null
     try {
