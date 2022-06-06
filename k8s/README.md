@@ -13,11 +13,15 @@ zookeeper + kafka + kafka-manager images
 docker-compose -f ./k8k/docker-compose.yml up -d
 ```
 
+![](img/도커_컴포스_업.png)
+
 ### Docker Compose Down
 
 ```bash 
 docker-compose -f ./k8s/docker-compose.yml down
 ```
+
+![](img/도커_컴포스_다운.png)
 
 ## Docker Kafka
 
