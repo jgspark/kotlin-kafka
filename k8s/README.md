@@ -27,17 +27,23 @@ docker-compose -f ./k8s/docker-compose.yml down
 docker container exec -it kafka bash
 ```
 
+![](img/컨테이너.png)
+
 ### 토픽 생성 하기
 
 ```bash
 docker exec -ti kafka /opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --topic blog_test --create
 ```
 
+![](img/토픽_생성.png)
+
 ### 토픽 리스트
 
 ```bash
 docker exec -ti kafka /opt/kafka/bin/kafka-topics.sh --list --zookeeper zookeeper
 ```
+
+![](img/토픽_리스트.png)
 
 ### 토픽에 레코드 넣기
 
