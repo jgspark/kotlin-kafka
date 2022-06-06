@@ -1,4 +1,4 @@
-package com.example.kotlinkafka.service.producer.dto
+package com.example.kotlinkafka.producer.dto
 
 data class TestDTO constructor(private var name: String) {
 

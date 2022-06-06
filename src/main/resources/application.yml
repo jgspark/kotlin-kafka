@@ -1,3 +1,12 @@
+spring:
+    kafka:
+        consumer:
+            auto-offset-reset: earliest
+            group-id: groupOne
+test:
+    topic: embedded-test-topic
+
+
 kafka:
     id: localhost
     port: 9092
