@@ -2,6 +2,7 @@ package com.example.kotlinkafka.producer
 
 import com.example.kotlinkafka.constants.TopicNames.Companion.testTopic
 import com.example.kotlinkafka.producer.dto.TestDTO
+import com.example.kotlinkafka.utils.convertOf
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.kafka.core.KafkaTemplate
@@ -13,19 +14,8 @@ class TestProducer constructor(
 ) {
 
     fun save(dto: TestDTO): TestDTO {
-
-        val objectMapper = ObjectMapper()
-
-        var realString = ""
-
-        try {
-            realString = objectMapper.writeValueAsString(dto)
-        } catch (e: JsonProcessingException) {
-            e.printStackTrace()
-        }
-
-        kafkaTemplate.send(testTopic, realString)
-
+        var dataString = convertOf(dto)
+        kafkaTemplate.send(testTopic, dataString)
         return dto
     }
 }
