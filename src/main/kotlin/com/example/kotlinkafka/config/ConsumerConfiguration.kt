@@ -31,6 +31,10 @@ class ConsumerConfiguration constructor(
         ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to kafkaProperty.getFullIp(),
         ConsumerConfig.GROUP_ID_CONFIG to kafkaProperty.getGroupId(),
         ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,
-        ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java
+        ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,
+        // 테스트 케이스 때문에 속성 추가된
+        // 추후에 변경을 할 것
+        // todo : 22/06/06
+        ConsumerConfig.AUTO_OFFSET_RESET_CONFIG to "earliest"
     )
 }
