@@ -1,21 +1,19 @@
 package com.example.kotlinkafka.producer
 
-import com.example.kotlinkafka.constants.TopicNames.Companion.testTopic
+import com.example.kotlinkafka.config.Sender
 import com.example.kotlinkafka.producer.dto.TestDTO
 import com.example.kotlinkafka.utils.convertOf
-import com.fasterxml.jackson.core.JsonProcessingException
-import com.fasterxml.jackson.databind.ObjectMapper
-import org.springframework.kafka.core.KafkaTemplate
+import org.apache.kafka.clients.admin.NewTopic
 import org.springframework.stereotype.Component
 
 @Component
 class TestProducer constructor(
-    private val kafkaTemplate: KafkaTemplate<String, String>,
+    private val sender: Sender,
+    private val testTopic: NewTopic
 ) {
-
     fun save(dto: TestDTO): TestDTO {
-        var dataString = convertOf(dto)
-        kafkaTemplate.send(testTopic, dataString)
+        val dataString = convertOf(dto)
+        sender.send(testTopic.name(), dataString)
         return dto
     }
 }

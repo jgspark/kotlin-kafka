@@ -6,6 +6,6 @@ class TopicNames {
     private constructor()
 
     companion object {
-        const val testTopic: String = "testTopic"
+        const val testTopicName: String = "testTopic"
     }
 }

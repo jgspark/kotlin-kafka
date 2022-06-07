@@ -17,17 +17,16 @@ class ConsumerConfiguration constructor(
 
     @Bean
     fun consumerFactory(): ConsumerFactory<String, Any> {
-        return DefaultKafkaConsumerFactory(getConfiguration())
+        return DefaultKafkaConsumerFactory(getConfig())
     }
 
     @Bean
-    fun kafkaListenerContainerFactory(): ConcurrentKafkaListenerContainerFactory<String, Any> {
-        val concurrentKafkaListenerContainerFactory = ConcurrentKafkaListenerContainerFactory<String, Any>()
-        concurrentKafkaListenerContainerFactory.consumerFactory = consumerFactory()
-        return concurrentKafkaListenerContainerFactory
-    }
+    fun kafkaListenerContainerFactory(): ConcurrentKafkaListenerContainerFactory<String, Any> =
+        ConcurrentKafkaListenerContainerFactory<String, Any>().also { li ->
+            li.consumerFactory = consumerFactory()
+        }
 
-    private fun getConfiguration() = mapOf<String, Any>(
+    private fun getConfig() = mapOf<String, Any>(
         ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to kafkaProperty.getFullIp(),
         ConsumerConfig.GROUP_ID_CONFIG to kafkaProperty.getGroupId(),
         ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,

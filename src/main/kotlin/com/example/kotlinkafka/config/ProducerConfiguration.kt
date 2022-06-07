@@ -25,4 +25,7 @@ class ProducerConfiguration constructor(private val kafkaProperty: KafkaProperty
         ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG to StringSerializer::class.java,
         ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG to StringSerializer::class.java
     )
+
+    @Bean
+    fun sender(kafkaTemplate: KafkaTemplate<String, String>): Sender = Sender(kafkaTemplate)
 }
