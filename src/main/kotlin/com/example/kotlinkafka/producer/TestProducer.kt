@@ -6,6 +6,8 @@ import com.example.kotlinkafka.producer.dto.TestDTO
 import com.example.kotlinkafka.utils.convertOf
 import org.apache.kafka.clients.admin.NewTopic
 import org.springframework.stereotype.Component
+import org.springframework.util.concurrent.FailureCallback
+import org.springframework.util.concurrent.SuccessCallback
 
 @Component
 class TestProducer constructor(
@@ -13,8 +15,22 @@ class TestProducer constructor(
     private val testTopic: NewTopic
 ) {
     fun save(dto: TestDTO): TestDTO {
+       
         val dataString = convertOf(dto)
-        sender.send(testTopic.name(), testKey, dataString)
+
+        val listenableFuture = sender.send(testTopic.name(), testKey, dataString)
+
+        listenableFuture.addCallback(
+            // success
+            SuccessCallback { result ->
+                println("result=> ${result}")
+            },
+            // failure
+            FailureCallback { ex ->
+                {
+                    ex.printStackTrace()
+                }
+            })
         return dto
     }
 }
