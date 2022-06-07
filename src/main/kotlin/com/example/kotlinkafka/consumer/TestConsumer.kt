@@ -1,5 +1,6 @@
 package com.example.kotlinkafka.consumer
 
+import com.example.kotlinkafka.constants.TopicNames.Companion.testKey
 import com.example.kotlinkafka.constants.TopicNames.Companion.testTopicName
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.stereotype.Component
@@ -12,7 +13,10 @@ class TestConsumer {
 
     private var payload: String? = null
 
-    @KafkaListener(topics = [testTopicName])
+    @KafkaListener(
+        id = testKey,
+        topics = [testTopicName]
+    )
     fun testMessageConsumer(message: String) {
         payload = message
         println(message)
