@@ -3,6 +3,9 @@ package com.example.kotlinkafka.consumer
 import com.example.kotlinkafka.constants.TopicNames.Companion.testKey
 import com.example.kotlinkafka.constants.TopicNames.Companion.testTopicName
 import org.springframework.kafka.annotation.KafkaListener
+import org.springframework.kafka.support.KafkaHeaders
+import org.springframework.messaging.handler.annotation.Header
+import org.springframework.messaging.handler.annotation.Payload
 import org.springframework.stereotype.Component
 import java.util.concurrent.CountDownLatch
 
@@ -17,9 +20,16 @@ class TestConsumer {
         id = testKey,
         topics = [testTopicName]
     )
-    fun testMessageConsumer(message: String) {
+    // version 2.5 이상 부터 ConsumerRecordMetadata 객체를 통해서 meta 데이터 추출이 가능
+    fun testMessageConsumer(
+        @Payload message: String,
+        @Header(name = KafkaHeaders.RECEIVED_MESSAGE_KEY, required = false) key: String,
+        @Header(KafkaHeaders.RECEIVED_PARTITION_ID) partition: Int,
+        @Header(KafkaHeaders.RECEIVED_TOPIC) topic: String,
+        @Header(KafkaHeaders.RECEIVED_TIMESTAMP) time: Long
+    ) {
         payload = message
-        println(message)
+        println("payload : ${message} \n key : ${key} \n partition : ${partition} \n topic : ${topic} \n time : ${time}")
         latch.countDown()
     }
 
