@@ -15,7 +15,7 @@ class TestProducer constructor(
     private val testTopic: NewTopic
 ) {
     fun save(dto: TestDTO): TestDTO {
-       
+
         val dataString = convertOf(dto)
 
         val listenableFuture = sender.send(testTopic.name(), testKey, dataString)
