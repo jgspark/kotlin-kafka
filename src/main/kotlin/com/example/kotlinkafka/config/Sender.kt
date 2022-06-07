@@ -13,5 +13,4 @@ class Sender constructor(
     fun send(topic: String, data: String?) {
         kafkaTemplate.send(topic, data)
     }
-
 }

@@ -31,7 +31,7 @@ internal class TestTopicTest {
 
         testProducer?.save(dto)
 
-        testConsumer?.getLatch()?.await(10000, TimeUnit.MILLISECONDS);
+        testConsumer?.getLatch()?.await(10000, TimeUnit.MILLISECONDS)
 
         org.assertj.core.api.Assertions.assertThat(testConsumer?.getLatch()?.count).isEqualTo(1)
 
