@@ -1,6 +1,7 @@
 package com.example.kotlinkafka.producer
 
 import com.example.kotlinkafka.config.Sender
+import com.example.kotlinkafka.constants.TopicNames.Companion.testKey
 import com.example.kotlinkafka.producer.dto.TestDTO
 import com.example.kotlinkafka.utils.convertOf
 import org.apache.kafka.clients.admin.NewTopic
@@ -13,7 +14,7 @@ class TestProducer constructor(
 ) {
     fun save(dto: TestDTO): TestDTO {
         val dataString = convertOf(dto)
-        sender.send(testTopic.name(), dataString)
+        sender.send(testTopic.name(), testKey, dataString)
         return dto
     }
 }

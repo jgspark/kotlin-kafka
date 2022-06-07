@@ -7,5 +7,6 @@ class TopicNames {
 
     companion object {
         const val testTopicName: String = "testTopic"
+        const val testKey: String = "testId"
     }
 }
