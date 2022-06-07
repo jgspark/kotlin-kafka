@@ -10,7 +10,7 @@ zookeeper + kafka + kafka-manager images
 - command use to root project
 
 ```bash
-docker-compose -f ./k8k/docker-compose.yml up -d
+docker-compose -f ./k8s/docker-compose.yml up -d
 ```
 
 ![](img/도커_컴포스_업.png)
