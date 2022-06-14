@@ -34,7 +34,7 @@ class TestConsumer {
 
         val time = convertOf(consumerRecordMetadata.timestamp())
 
-        println("payload : ${message} \n key : ${key} \n partition : ${partition} \n topic : ${topic} \n time : ${time}")
+        println("payload : $message \n key : $key \n partition : $partition \n topic : $topic \n time : $time")
 
         latch.countDown()
     }

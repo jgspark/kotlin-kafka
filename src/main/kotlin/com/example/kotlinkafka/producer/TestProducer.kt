@@ -23,14 +23,15 @@ class TestProducer constructor(
         listenableFuture.addCallback(
             // success
             SuccessCallback { result ->
-                println("result=> ${result}")
+                println("result=> $result")
             },
             // failure
             FailureCallback { ex ->
                 {
                     ex.printStackTrace()
                 }
-            })
+            }
+        )
         return dto
     }
 }

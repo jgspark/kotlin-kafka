@@ -18,8 +18,7 @@ fun convertOf(any: Any?): String? {
     return string
 }
 
-
 /**
  * long value change to date value
  */
-fun convertOf(long: Long) = Date(long * 1000);
+fun convertOf(long: Long) = Date(long * 1000)
