@@ -30,6 +30,6 @@ class ProducerConfiguration constructor(private val kafkaProperty: KafkaProperty
 
     @Bean
     fun sender(
-        kafkaTemplate: KafkaTemplate<String, String>
+        kafkaTemplate: KafkaTemplate<String, Any>
     ): Sender = Sender(kafkaTemplate)
 }
