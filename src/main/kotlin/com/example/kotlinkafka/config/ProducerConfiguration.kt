@@ -14,12 +14,12 @@ import org.springframework.kafka.core.KafkaTemplate
 class ProducerConfiguration constructor(private val kafkaProperty: KafkaProperty) {
 
     @Bean
-    fun defaultKafkaProducerFactory(): DefaultKafkaProducerFactory<String, Message> {
-        return DefaultKafkaProducerFactory<String, Message>(getConfig())
+    fun defaultKafkaProducerFactory(): DefaultKafkaProducerFactory<String, String> {
+        return DefaultKafkaProducerFactory<String, String>(getConfig())
     }
 
     @Bean
-    fun kafkaTemplate(): KafkaTemplate<String, Message> = KafkaTemplate(defaultKafkaProducerFactory())
+    fun kafkaTemplate(): KafkaTemplate<String, String> = KafkaTemplate(defaultKafkaProducerFactory())
 
     private fun getConfig(): Map<String, Any> = mapOf(
         ProducerConfig.BOOTSTRAP_SERVERS_CONFIG to kafkaProperty.getFullIp(),
