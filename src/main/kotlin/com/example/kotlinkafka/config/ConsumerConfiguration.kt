@@ -35,4 +35,5 @@ class ConsumerConfiguration constructor(
         ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to SendDataDeserializer::class.java,
         ConsumerConfig.AUTO_OFFSET_RESET_CONFIG to "earliest"
     )
+    
 }
