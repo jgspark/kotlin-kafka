@@ -1,6 +1,6 @@
 package com.example.kotlinkafka.config
 
-import com.example.kotlinkafka.message.send.SendData
+import com.example.kotlinkafka.action.message.send.SendData
 import org.springframework.kafka.core.KafkaTemplate
 
 class Sender constructor(

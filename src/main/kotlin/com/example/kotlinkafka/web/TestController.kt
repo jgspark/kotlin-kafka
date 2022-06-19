@@ -1,7 +1,7 @@
 package com.example.kotlinkafka.web
 
-import com.example.kotlinkafka.producer.dto.TestDTO
-import com.example.kotlinkafka.producer.TestProducer
+import com.example.kotlinkafka.action.producer.dto.TestDTO
+import com.example.kotlinkafka.action.producer.TestProducer
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody

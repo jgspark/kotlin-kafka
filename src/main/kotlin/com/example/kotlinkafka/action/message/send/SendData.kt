@@ -1,4 +1,4 @@
-package com.example.kotlinkafka.message.send
+package com.example.kotlinkafka.action.message.send
 
 //@kotlinx.serialization.Serializable
 data class SendData(

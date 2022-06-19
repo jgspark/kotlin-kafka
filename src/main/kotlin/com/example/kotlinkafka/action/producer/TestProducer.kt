@@ -1,9 +1,9 @@
-package com.example.kotlinkafka.producer
+package com.example.kotlinkafka.action.producer
 
 import com.example.kotlinkafka.config.Sender
 import com.example.kotlinkafka.constants.TopicNames.Companion.testKey
-import com.example.kotlinkafka.producer.dto.TestDTO
-import com.example.kotlinkafka.message.send.SendData
+import com.example.kotlinkafka.action.producer.dto.TestDTO
+import com.example.kotlinkafka.action.message.send.SendData
 import org.apache.kafka.clients.admin.NewTopic
 import org.springframework.stereotype.Component
 import org.springframework.util.concurrent.FailureCallback

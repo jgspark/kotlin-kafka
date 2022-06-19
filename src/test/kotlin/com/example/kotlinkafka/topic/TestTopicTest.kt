@@ -1,8 +1,8 @@
 package com.example.kotlinkafka.topic
 
-import com.example.kotlinkafka.consumer.TestConsumer
-import com.example.kotlinkafka.producer.TestProducer
-import com.example.kotlinkafka.producer.dto.TestDTO
+import com.example.kotlinkafka.action.consumer.TestConsumer
+import com.example.kotlinkafka.action.producer.TestProducer
+import com.example.kotlinkafka.action.producer.dto.TestDTO
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest

@@ -1,8 +1,9 @@
 package com.example.kotlinkafka.consumer
 
-import com.example.kotlinkafka.message.send.SendData
-import com.example.kotlinkafka.producer.TestProducer
-import com.example.kotlinkafka.producer.dto.TestDTO
+import com.example.kotlinkafka.action.consumer.TestConsumer
+import com.example.kotlinkafka.action.message.send.SendData
+import com.example.kotlinkafka.action.producer.TestProducer
+import com.example.kotlinkafka.action.producer.dto.TestDTO
 import com.example.kotlinkafka.utils.convertOf
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

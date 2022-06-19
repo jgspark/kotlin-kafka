@@ -1,8 +1,8 @@
-package com.example.kotlinkafka.consumer
+package com.example.kotlinkafka.action.consumer
 
 import com.example.kotlinkafka.constants.TopicNames.Companion.testKey
 import com.example.kotlinkafka.constants.TopicNames.Companion.testTopicName
-import com.example.kotlinkafka.message.send.SendData
+import com.example.kotlinkafka.action.message.send.SendData
 import com.example.kotlinkafka.utils.convertOf
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.kafka.listener.adapter.ConsumerRecordMetadata

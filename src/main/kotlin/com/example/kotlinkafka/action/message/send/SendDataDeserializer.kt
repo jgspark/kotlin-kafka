@@ -1,4 +1,4 @@
-package com.example.kotlinkafka.message.send
+package com.example.kotlinkafka.action.message.send
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.kafka.common.errors.SerializationException

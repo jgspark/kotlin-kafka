@@ -1,4 +1,4 @@
-package com.example.kotlinkafka.message.send
+package com.example.kotlinkafka.action.message.send
 
 import com.example.kotlinkafka.exception.NoSendDataException
 import com.fasterxml.jackson.databind.ObjectMapper
