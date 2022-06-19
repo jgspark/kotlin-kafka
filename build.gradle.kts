@@ -31,7 +31,6 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.kafka:spring-kafka-test")
     implementation("org.apache.kafka:kafka-clients:3.1.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
 }
 
 tasks.withType<KotlinCompile> {
