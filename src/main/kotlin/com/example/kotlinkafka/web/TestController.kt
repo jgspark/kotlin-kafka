@@ -13,5 +13,5 @@ class TestController constructor(private val testProducer: TestProducer) {
 
     @PostMapping("test")
     @ResponseStatus(HttpStatus.CREATED)
-    fun testMethod(@RequestBody dto: TestDTO): TestDTO = testProducer.save(dto)
+    fun testMethod(@RequestBody dto: TestDTO): TestDTO? = testProducer.save(dto)
 }

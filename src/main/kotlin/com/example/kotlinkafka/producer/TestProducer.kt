@@ -14,9 +14,9 @@ class TestProducer constructor(
     private val sender: Sender,
     private val testTopic: NewTopic
 ) {
-    fun save(dto: TestDTO): TestDTO {
+    fun save(dto: TestDTO?): TestDTO? {
 
-        val sendData = SendData(dto.getName())
+        val sendData = SendData(dto?.getName())
 
         val listenableFuture = sender.send(testTopic.name(), testKey, sendData)
 
@@ -26,7 +26,8 @@ class TestProducer constructor(
                 println("result=> $result")
             },
             // 실패
-            FailureCallback { ex -> {
+            FailureCallback { ex ->
+                {
                     ex.printStackTrace()
                     ex
                 }
