@@ -1,6 +1,5 @@
-package com.example.kotlinkafka.producer
+package com.example.kotlinkafka.action.producer
 
-import com.example.kotlinkafka.action.producer.TestProducer
 import com.example.kotlinkafka.config.exception.NoSendDataException
 import com.example.kotlinkafka.action.producer.dto.TestDTO
 import org.junit.jupiter.api.Assertions

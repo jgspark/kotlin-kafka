@@ -1,4 +1,4 @@
-package com.example.kotlinkafka.consumer
+package com.example.kotlinkafka.action.consumer
 
 import com.example.kotlinkafka.action.consumer.TestConsumer
 import com.example.kotlinkafka.action.message.send.SendData
