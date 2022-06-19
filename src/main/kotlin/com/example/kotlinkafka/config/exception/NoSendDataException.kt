@@ -1,4 +1,4 @@
-package com.example.kotlinkafka.exception
+package com.example.kotlinkafka.config.exception
 
 /**
  * Kafka Send Data Exception

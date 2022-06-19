@@ -1,7 +1,7 @@
 package com.example.kotlinkafka.producer
 
 import com.example.kotlinkafka.action.producer.TestProducer
-import com.example.kotlinkafka.exception.NoSendDataException
+import com.example.kotlinkafka.config.exception.NoSendDataException
 import com.example.kotlinkafka.action.producer.dto.TestDTO
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -32,7 +32,8 @@ internal class TestProducerTest {
 
     @Test
     fun `카프카에서 메세지를 null 로 던지는 케이스`() {
-        Assertions.assertThrows(NoSendDataException::class.java,
+        Assertions.assertThrows(
+            NoSendDataException::class.java,
             Executable {
                 testProducer?.save(null)
             }
