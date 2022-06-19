@@ -13,8 +13,9 @@ class SendDataSerializer : Serializer<SendData> {
         if (null == it.getName()) {
             throw NoSendDataException()
         }
+        it
     }.run {
-        objectMapper.writeValueAsString(data).toByteArray()
+        objectMapper.writeValueAsString(this).toByteArray()
     }
 
 }
