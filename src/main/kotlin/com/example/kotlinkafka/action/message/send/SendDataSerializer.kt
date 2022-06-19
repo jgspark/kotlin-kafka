@@ -17,5 +17,4 @@ class SendDataSerializer : Serializer<SendData> {
     }.run {
         objectMapper.writeValueAsString(this).toByteArray()
     }
-
 }

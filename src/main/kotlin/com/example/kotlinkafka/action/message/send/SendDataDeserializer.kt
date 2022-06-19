@@ -17,5 +17,4 @@ class SendDataDeserializer : Deserializer<SendData> {
         }.run {
             objectMapper.readValue(String(this!!, UTF_8), SendData::class.java)
         }
-
 }
