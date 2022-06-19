@@ -1,5 +1,6 @@
 package com.example.kotlinkafka.consumer
 
+import com.example.kotlinkafka.message.send.SendData
 import com.example.kotlinkafka.producer.TestProducer
 import com.example.kotlinkafka.producer.dto.TestDTO
 import com.example.kotlinkafka.utils.convertOf
@@ -38,11 +39,11 @@ internal class TestConsumerTest {
 
         val latch = testConsumer?.getLatch()
 
-        val mockString = convertOf(mock)
+        val mockSendData = SendData(mock?.getName())
 
         latch?.await(10000, TimeUnit.MILLISECONDS)
 
         org.junit.jupiter.api.Assertions.assertEquals(latch?.count, 0)
-        org.junit.jupiter.api.Assertions.assertEquals(testConsumer?.getPayload(), mockString)
+        org.junit.jupiter.api.Assertions.assertEquals(testConsumer?.getPayload(), mockSendData)
     }
 }

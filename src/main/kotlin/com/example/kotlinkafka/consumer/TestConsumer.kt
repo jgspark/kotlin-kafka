@@ -2,6 +2,7 @@ package com.example.kotlinkafka.consumer
 
 import com.example.kotlinkafka.constants.TopicNames.Companion.testKey
 import com.example.kotlinkafka.constants.TopicNames.Companion.testTopicName
+import com.example.kotlinkafka.message.send.SendData
 import com.example.kotlinkafka.utils.convertOf
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.kafka.listener.adapter.ConsumerRecordMetadata
@@ -15,14 +16,14 @@ class TestConsumer {
 
     private val latch: CountDownLatch = CountDownLatch(1)
 
-    private var payload: String? = null
+    private var payload: SendData? = null
 
     @KafkaListener(
         id = testKey,
         topics = [testTopicName]
     )
     fun testMessageConsumer(
-        message: String,
+        message: SendData,
         @Header(name = KafkaHeaders.RECEIVED_MESSAGE_KEY, required = false) key: String,
         consumerRecordMetadata: ConsumerRecordMetadata
     ) {
@@ -34,7 +35,7 @@ class TestConsumer {
 
         val time = convertOf(consumerRecordMetadata.timestamp())
 
-        println("payload : $message \n key : $key \n partition : $partition \n topic : $topic \n time : $time")
+        println("payload : ${message.getName()} \n key : $key \n partition : $partition \n topic : $topic \n time : $time")
 
         latch.countDown()
     }

@@ -4,5 +4,8 @@ package com.example.kotlinkafka.message.send
 data class SendData(
     private var name: String?
 ) {
+
+    constructor() : this(null) {}
+
     fun getName() = this.name
 }
