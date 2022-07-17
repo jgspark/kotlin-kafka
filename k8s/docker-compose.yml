@@ -5,12 +5,16 @@ services:
         image: wurstmeister/zookeeper:3.4.6
         container_name: zookeeper
         restart: always
+        networks:
+            - default
         ports:
             - "2181:2181"
     # kafka setting
     kafka:
         image: wurstmeister/kafka:2.13-2.8.1
         container_name: kafka
+        networks:
+            - default
         ports:
             - "9092:9092"
         depends_on:
@@ -30,11 +34,16 @@ services:
         image: provectuslabs/kafka-ui
         container_name: kafka-ui
         restart: always
+        networks:
+            - default
+        depends_on:
+            - kafka
         ports:
             - "9000:8080"
         environment:
             # Log 레벨
             LOGGING_LEVEL_ROOT: debug
-            KAFKA_CLUSTERS_0_NAME: local-kafka
-            KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
-            KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+            KAFKA_CLUSTERS_0_NAME: local
+            KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: localhost:9092
+            KAFKA_CLUSTERS_0_ZOOKEEPER: localhost:2181
+

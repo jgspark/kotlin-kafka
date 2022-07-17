@@ -33,6 +33,13 @@ docker container exec -it kafka bash
 
 ![](img/컨테이너.png)
 
+
+### Compose Same Network Setting 
+
+```
+docker network create kafka-network
+```
+
 ### 토픽 생성 하기
 
 ```bash
