@@ -1,8 +1,8 @@
 package com.example.kotlinkafka.topic
 
-import com.example.kotlinkafka.action.consumer.TestConsumer
-import com.example.kotlinkafka.action.producer.TestProducer
-import com.example.kotlinkafka.action.producer.dto.TestDTO
+import com.example.kotlinkafka.domain.MessageConsumer
+import com.example.kotlinkafka.domain.MessageProducer
+import com.example.kotlinkafka.dto.MessageDTO
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -19,21 +19,21 @@ import java.util.concurrent.TimeUnit
 internal class TestTopicTest {
 
     @Autowired
-    private var testConsumer: TestConsumer? = null
+    private var messageConsumer: MessageConsumer? = null
 
     @Autowired
-    private var testProducer: TestProducer? = null
+    private var messageProducer: MessageProducer? = null
 
     @Test
     fun `testTopic 에 message 보내기`() {
 
-        val dto = TestDTO("test100")
+        val dto = MessageDTO("test100")
 
-        testProducer?.save(dto)
+        messageProducer?.save(dto)
 
-        testConsumer?.getLatch()?.await(10000, TimeUnit.MILLISECONDS)
+        messageConsumer?.getLatch()?.await(10000, TimeUnit.MILLISECONDS)
 
-        org.assertj.core.api.Assertions.assertThat(testConsumer?.getLatch()?.count).isEqualTo(1)
+        org.assertj.core.api.Assertions.assertThat(messageConsumer?.getLatch()?.count).isEqualTo(1)
 
 //        assertThat(consumer.getLatch().getCount(), equalTo(0L));
 //        assertThat(consumer.getPayload(), containsString("embedded-test-topic"));

@@ -1,4 +1,4 @@
-package com.example.kotlinkafka.config
+package com.example.kotlinkafka.infra.config
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 

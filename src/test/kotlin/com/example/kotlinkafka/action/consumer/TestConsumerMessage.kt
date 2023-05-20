@@ -1,8 +1,9 @@
 package com.example.kotlinkafka.action.consumer
 
-import com.example.kotlinkafka.action.message.send.SendData
-import com.example.kotlinkafka.action.producer.TestProducer
-import com.example.kotlinkafka.action.producer.dto.TestDTO
+import com.example.kotlinkafka.dto.SendData
+import com.example.kotlinkafka.domain.MessageProducer
+import com.example.kotlinkafka.domain.MessageConsumer
+import com.example.kotlinkafka.dto.MessageDTO
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,32 +18,32 @@ import java.util.concurrent.TimeUnit
     partitions = 1,
     brokerProperties = ["listeners=PLAINTEXT://localhost:9092", "port=9092"]
 )
-internal class TestConsumerTest {
+internal class TestConsumerMessage {
 
     @Autowired
-    private var testConsumer: TestConsumer? = null
+    private var messageConsumer: MessageConsumer? = null
 
     @Autowired
-    private var testProducer: TestProducer? = null
+    private var messageProducer: MessageProducer? = null
 
-    private var mock: TestDTO? = null
+    private var mock: MessageDTO? = null
 
     @BeforeEach
     fun init() {
-        mock = TestDTO("test100")
-        testProducer?.save(mock!!)
+        mock = MessageDTO("test100")
+        messageProducer?.save(mock!!)
     }
 
     @Test
     fun `컨슈머에서 메세지가 도칙했는지 확인`() {
 
-        val latch = testConsumer?.getLatch()
+        val latch = messageConsumer?.getLatch()
 
         val mockSendData = SendData(mock?.getName())
 
         latch?.await(10000, TimeUnit.MILLISECONDS)
 
         org.junit.jupiter.api.Assertions.assertEquals(latch?.count, 0)
-        org.junit.jupiter.api.Assertions.assertEquals(testConsumer?.getPayload(), mockSendData)
+        org.junit.jupiter.api.Assertions.assertEquals(messageConsumer?.getPayload(), mockSendData)
     }
 }

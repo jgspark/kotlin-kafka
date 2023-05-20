@@ -1,6 +1,6 @@
-package com.example.kotlinkafka.config
+package com.example.kotlinkafka.infra.config
 
-import com.example.kotlinkafka.action.message.send.SendDataDeserializer
+import com.example.kotlinkafka.infra.serializer.SendDataDeserializer
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.springframework.context.annotation.Bean

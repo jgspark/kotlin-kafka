@@ -1,7 +1,8 @@
 package com.example.kotlinkafka.action.producer
 
-import com.example.kotlinkafka.config.exception.NoSendDataException
-import com.example.kotlinkafka.action.producer.dto.TestDTO
+import com.example.kotlinkafka.core.exception.NoSendDataException
+import com.example.kotlinkafka.domain.MessageProducer
+import com.example.kotlinkafka.dto.MessageDTO
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.function.Executable
@@ -17,15 +18,15 @@ import org.springframework.test.annotation.DirtiesContext
     brokerProperties = ["listeners=PLAINTEXT://localhost:9092", "port=9092"]
 )
 
-internal class TestProducerTest {
+internal class TestProducerMessage {
 
     @Autowired
-    private var testProducer: TestProducer? = null
+    private var messageProducer: MessageProducer? = null
 
     @Test
     fun `카프케이서 메세지 넘기는 메소드 테스트 케이스`() {
-        val dto = TestDTO("test100")
-        val data = testProducer?.save(dto)
+        val dto = MessageDTO("test100")
+        val data = messageProducer?.save(dto)
         Assertions.assertEquals(dto.getName(), data?.getName())
     }
 
@@ -34,7 +35,7 @@ internal class TestProducerTest {
         Assertions.assertThrows(
             NoSendDataException::class.java,
             Executable {
-                testProducer?.save(null)
+                messageProducer?.save(null)
             }
         )
     }

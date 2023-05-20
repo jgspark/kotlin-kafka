@@ -1,4 +1,4 @@
-package com.example.kotlinkafka.utils
+package com.example.kotlinkafka.core.util
 
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper

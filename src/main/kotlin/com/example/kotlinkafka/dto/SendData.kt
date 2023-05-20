@@ -1,4 +1,4 @@
-package com.example.kotlinkafka.action.message.send
+package com.example.kotlinkafka.dto
 
 data class SendData(
     private var name: String?

@@ -1,20 +1,17 @@
-package com.example.kotlinkafka.action.producer
+package com.example.kotlinkafka.domain
 
-import com.example.kotlinkafka.config.Sender
-import com.example.kotlinkafka.constants.TopicNames.Companion.testKey
-import com.example.kotlinkafka.action.producer.dto.TestDTO
-import com.example.kotlinkafka.action.message.send.SendData
+import com.example.kotlinkafka.infra.config.Sender
+import com.example.kotlinkafka.dto.MessageDTO
+import com.example.kotlinkafka.dto.SendData
 import org.apache.kafka.clients.admin.NewTopic
 import org.springframework.stereotype.Component
-import org.springframework.util.concurrent.FailureCallback
-import org.springframework.util.concurrent.SuccessCallback
 
 @Component
-class TestProducer constructor(
+class MessageProducer constructor(
     private val sender: Sender,
     private val testTopic: NewTopic
 ) {
-    fun save(dto: TestDTO?): TestDTO? {
+    fun save(dto: MessageDTO?): MessageDTO? {
 
         val sendData = SendData(dto?.getName())
 

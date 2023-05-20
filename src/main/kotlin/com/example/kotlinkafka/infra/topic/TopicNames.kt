@@ -1,4 +1,4 @@
-package com.example.kotlinkafka.constants
+package com.example.kotlinkafka.infra.topic
 
 class TopicNames {
 

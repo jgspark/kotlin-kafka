@@ -1,6 +1,6 @@
-package com.example.kotlinkafka.config
+package com.example.kotlinkafka.infra.config
 
-import com.example.kotlinkafka.constants.TopicNames.Companion.testTopicName
+import com.example.kotlinkafka.infra.topic.TopicNames.Companion.testTopicName
 import org.apache.kafka.clients.admin.AdminClientConfig
 import org.apache.kafka.clients.admin.NewTopic
 import org.springframework.context.annotation.Bean

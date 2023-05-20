@@ -1,5 +1,6 @@
 package com.example.kotlinkafka.config
 
+import com.example.kotlinkafka.infra.config.KafkaProperty
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

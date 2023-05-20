@@ -1,6 +1,7 @@
-package com.example.kotlinkafka.action.message.send
+package com.example.kotlinkafka.infra.serializer
 
-import com.example.kotlinkafka.config.exception.NoSendDataException
+import com.example.kotlinkafka.core.exception.NoSendDataException
+import com.example.kotlinkafka.dto.SendData
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.kafka.common.serialization.Serializer
 

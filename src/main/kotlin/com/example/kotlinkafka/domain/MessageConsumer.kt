@@ -1,9 +1,9 @@
-package com.example.kotlinkafka.action.consumer
+package com.example.kotlinkafka.domain
 
-import com.example.kotlinkafka.action.message.send.SendData
-import com.example.kotlinkafka.constants.TopicNames.Companion.testKey
-import com.example.kotlinkafka.constants.TopicNames.Companion.testTopicName
-import com.example.kotlinkafka.utils.convertOf
+import com.example.kotlinkafka.dto.SendData
+import com.example.kotlinkafka.infra.topic.TopicNames.Companion.testKey
+import com.example.kotlinkafka.infra.topic.TopicNames.Companion.testTopicName
+import com.example.kotlinkafka.core.util.convertOf
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.kafka.listener.adapter.ConsumerRecordMetadata
 import org.springframework.kafka.support.KafkaHeaders
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component
 import java.util.concurrent.CountDownLatch
 
 @Component
-class TestConsumer {
+class MessageConsumer {
 
     private val latch: CountDownLatch = CountDownLatch(1)
 
