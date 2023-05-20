@@ -18,22 +18,26 @@ class TestProducer constructor(
 
         val sendData = SendData(dto?.getName())
 
-        val listenableFuture = sender.send(testTopic.name(), testKey, sendData)
+//        val listenableFuture = sender.send(testTopic.name(), testKey, sendData)
 
-        listenableFuture.addCallback(
-            // 성공
-            SuccessCallback { result ->
-                println("result=> $result")
-            },
-            // 실패
-            FailureCallback { ex ->
-                {
-                    ex.printStackTrace()
-                    ex
-                }
-            }
-        )
+//        listenableFuture.
 
-        return dto
+//        listenableFuture.
+//        listenableFuture.addCallback(
+//            // 성공
+//            SuccessCallback { result ->
+//                println("result=> $result")
+//            },
+//            // 실패
+//            FailureCallback { ex ->
+//                {
+//                    ex.printStackTrace()
+//                    ex
+//                }
+//            }
+//        )
+
+//        return dto
+        return null
     }
 }

@@ -1,9 +1,7 @@
 package com.example.kotlinkafka.config
 
 import org.springframework.boot.context.properties.ConfigurationProperties
-import org.springframework.boot.context.properties.ConstructorBinding
 
-@ConstructorBinding
 @ConfigurationProperties(prefix = "kafka")
 data class KafkaProperty constructor(
     private var id: String,
