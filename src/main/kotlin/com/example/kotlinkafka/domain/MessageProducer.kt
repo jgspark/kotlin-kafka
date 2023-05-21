@@ -11,7 +11,7 @@ class MessageProducer constructor(
     private val sender: Sender,
     private val testTopic: NewTopic
 ) {
-    fun save(dto: MessageDTO?): MessageDTO? {
+    fun save(dto: MessageDTO?): MessageDTO {
 
         val sendData = SendData(dto?.getName())
 
@@ -35,6 +35,6 @@ class MessageProducer constructor(
 //        )
 
 //        return dto
-        return null
+        return MessageDTO("")
     }
 }

@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class TestController constructor(private val messageProducer: MessageProducer) {
+class MessageController(private val messageProducer: MessageProducer) {
 
-    @PostMapping("test")
+    @PostMapping("send")
     @ResponseStatus(HttpStatus.CREATED)
-    fun testMethod(@RequestBody dto: MessageDTO): MessageDTO? = messageProducer.save(dto)
+    fun testMethod(@RequestBody dto: MessageDTO): MessageDTO = messageProducer.save(dto)
 }
