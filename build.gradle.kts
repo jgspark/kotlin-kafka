@@ -9,37 +9,50 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
 }
 
-group = "com.example"
-version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_17
+springBoot {
+    mainClass.value("com.example.webflux.BootApplication")
+}
 
 repositories {
     mavenCentral()
+    maven("https://jitpack.io")
 }
 
-dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
-    runtimeOnly("com.h2database:h2")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-    implementation("org.springframework.kafka:spring-kafka")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.springframework.kafka:spring-kafka-test")
-    implementation("org.apache.kafka:kafka-clients:3.2.3")
-}
+allprojects {
+    val javaVersion = "17"
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "17"
+    group = "com.example"
+    version = "0.0.1-SNAPSHOT"
+
+    tasks.withType<JavaCompile> {
+        sourceCompatibility = javaVersion
+        targetCompatibility = javaVersion
+    }
+
+    tasks.withType<KotlinCompile> {
+        kotlinOptions {
+            freeCompilerArgs = listOf("-Xjsr305=strict")
+            jvmTarget = javaVersion
+        }
+    }
+
+    tasks.withType<Test> {
+        useJUnitPlatform()
     }
 }
 
-tasks.withType<Test> {
-    useJUnitPlatform()
+subprojects {
+
+    apply {
+        plugin("kotlin")
+        plugin("io.spring.dependency-management")
+        plugin("org.jetbrains.kotlin.jvm")
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+    }
 }
