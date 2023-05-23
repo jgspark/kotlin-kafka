@@ -75,3 +75,33 @@ docker exec -ti kafka /opt/kafka/bin/kafka-console-producer.sh --bootstrap-serve
 ```bash
 docker exec -ti kafka /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic blog_test --from-beginning
 ```
+
+## 토픽 파티션 수정
+
+* 토픽을 생성을 한 뒤 , 파티션을 수정을 할 수 있다.
+
+```bash
+kafka-topics.sh \
+--bootstrap-server localhost:9092 \
+--topic hello.kafka \
+--alter \
+--partitions 4
+```
+
+## 토픽 설정 변경
+
+```bash
+kafka-configs.sh \
+--entity-type topics \
+--entity-name hello.kafka \
+--alter --add-config retention.ms=86400000 \
+--bootstrap-server localhost:9092
+```
+
+## 레코드 값 넣기 (기본)
+
+```bash
+kafka-console-producer.sh \
+--bootstrap-server localhost:9092 \
+--topic hello.kafka
+```
