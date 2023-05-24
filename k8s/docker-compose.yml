@@ -22,7 +22,7 @@ services:
         environment:
             # 카프카 토픽 설정
             # TopicName:Partition_Num:Replica_Num,
-            KAFKA_CREATE_TOPICS: "testTopic:1:1"
+            KAFKA_CREATE_TOPICS: "hello.kafka:4:1"
             # 카프카 호스트 이름?
             # #카프카 프로듀서, 컨슈머에게 노출할 주소. 설정하지 않을 경우 디폴트로 listners 설정이 적용된다.
             KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
@@ -30,20 +30,20 @@ services:
             KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
-    kafka-ui:
-        image: provectuslabs/kafka-ui
-        container_name: kafka-ui
-        restart: always
-        networks:
-            - default
-        depends_on:
-            - kafka
-        ports:
-            - "9000:8080"
-        environment:
-            # Log 레벨
-            LOGGING_LEVEL_ROOT: debug
-            KAFKA_CLUSTERS_0_NAME: local
-            KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: localhost:9092
-            KAFKA_CLUSTERS_0_ZOOKEEPER: localhost:2181
-
+#    kafka-ui:
+#        image: provectuslabs/kafka-ui
+#        container_name: kafka-ui
+#        restart: always
+#        networks:
+#            - default
+#        depends_on:
+#            - kafka
+#        ports:
+#            - "9000:8080"
+#        environment:
+#            # Log 레벨
+#            LOGGING_LEVEL_ROOT: debug
+#            KAFKA_CLUSTERS_0_NAME: local
+#            KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: localhost:9092
+#            KAFKA_CLUSTERS_0_ZOOKEEPER: localhost:2181
+#
