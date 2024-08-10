@@ -2,12 +2,14 @@ package com.excample.legacy.app
 
 import com.excample.legacy.app.dto.MessageDTO
 import com.excample.legacy.app.dto.SendData
+import com.excample.legacy.infra.config.Sender
+import org.apache.kafka.clients.admin.NewTopic
 import org.springframework.stereotype.Component
 
 @Component
 class MessageProducer(
-//    private val sender: Sender,
-//    private val testTopic: NewTopic
+    private val sender: Sender,
+    private val testTopic: NewTopic
 ) {
     fun save(dto: MessageDTO?): MessageDTO {
         val sendData = SendData(dto?.getName())
