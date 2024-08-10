@@ -1,6 +1,5 @@
 rootProject.name = "kotlin-kafka"
 
-include("springboot")
 include(
     ":workspace:legacy"
 )

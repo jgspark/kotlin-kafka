@@ -1,4 +1,0 @@
-kafka:
-    id: localhost
-    port: 9092
-    groupId: groupOne

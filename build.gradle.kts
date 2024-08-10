@@ -4,7 +4,6 @@ plugins {
     id("org.springframework.boot") apply false
     id("io.spring.dependency-management")
     id("org.asciidoctor.jvm.convert") apply false
-//    id("org.jetbrains.kotlin.plugin.allopen")  // TODO(변경_포인트)
     id("org.jlleitschuh.gradle.ktlint") version "12.1.0"
     kotlin("jvm")
     kotlin("kapt") apply false
