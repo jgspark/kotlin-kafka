@@ -1,17 +1,20 @@
+/*
 plugins {
     kotlin("jvm")
     kotlin("plugin.spring")
     id("org.springframework.boot")
 }
 
-tasks.jar {
-    enabled = false
-}
+*/
 
-tasks.bootJar {
-    enabled = true
-}
-
+//tasks.jar {
+//    enabled = false
+//}
+//
+//tasks.bootJar {
+//    enabled = true
+//}
+//
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")

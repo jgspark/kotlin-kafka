@@ -1,58 +1,57 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "3.1.0"
-    id("io.spring.dependency-management") version "1.0.11.RELEASE"
-    kotlin("jvm") version "1.6.21"
-    kotlin("plugin.spring") version "1.6.21"
-    kotlin("plugin.jpa") version "1.6.21"
-    id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
-}
-
-springBoot {
-    mainClass.value("com.example.webflux.BootApplication")
-}
-
-repositories {
-    mavenCentral()
-    maven("https://jitpack.io")
+    id("org.springframework.boot") apply false
+    id("io.spring.dependency-management")
+    id("org.asciidoctor.jvm.convert") apply false
+//    id("org.jetbrains.kotlin.plugin.allopen")  // TODO(변경_포인트)
+    id("org.jlleitschuh.gradle.ktlint") version "12.1.0"
+    kotlin("jvm")
+    kotlin("kapt") apply false
+    kotlin("plugin.spring") apply false
+    kotlin("plugin.allopen") apply false
+    idea
 }
 
 allprojects {
-    val javaVersion = "17"
+    group = "${property("projectGroup")}"
+    version = "${property("applicationVersion")}"
 
-    group = "com.example"
-    version = "0.0.1-SNAPSHOT"
-
-    tasks.withType<JavaCompile> {
-        sourceCompatibility = javaVersion
-        targetCompatibility = javaVersion
-    }
-
-    tasks.withType<KotlinCompile> {
-        kotlinOptions {
-            freeCompilerArgs = listOf("-Xjsr305=strict")
-            jvmTarget = javaVersion
-        }
-    }
-
-    tasks.withType<Test> {
-        useJUnitPlatform()
+    repositories {
+        mavenCentral()
     }
 }
 
 subprojects {
 
-    apply {
-        plugin("kotlin")
-        plugin("io.spring.dependency-management")
-        plugin("org.jetbrains.kotlin.jvm")
-    }
+    apply(plugin = "org.jetbrains.kotlin.plugin.allopen")
+    apply(plugin = "org.jetbrains.kotlin.jvm")
+    apply(plugin = "org.jetbrains.kotlin.plugin.spring")
+    apply(plugin = "org.springframework.boot")
+    apply(plugin = "io.spring.dependency-management")
+    apply(plugin = "org.asciidoctor.jvm.convert")
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
+    apply(plugin = "org.jetbrains.kotlin.kapt")
 
-    repositories {
-        mavenCentral()
+    java {
+        sourceCompatibility = JavaVersion.VERSION_21
     }
 
     dependencies {
+        implementation("org.springframework.boot:spring-boot-starter-web")
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+        implementation("org.jetbrains.kotlin:kotlin-reflect")
+        testImplementation("org.springframework.boot:spring-boot-starter-test")
+    }
+
+    tasks.withType<KotlinCompile> {
+        kotlinOptions {
+            freeCompilerArgs += "-Xjsr305=strict"
+            jvmTarget = "${project.property("javaVersion")}"
+        }
+    }
+
+    tasks.withType<Test> {
+        useJUnitPlatform()
     }
 }
