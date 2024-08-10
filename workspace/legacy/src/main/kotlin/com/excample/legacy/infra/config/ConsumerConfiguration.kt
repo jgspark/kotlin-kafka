@@ -13,9 +13,8 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory
 @EnableKafka
 @Configuration
 class ConsumerConfiguration constructor(
-    private val kafkaProperty: KafkaProperty
+    private val kafkaProperty: KafkaProperty,
 ) {
-
     @Bean
     fun consumerFactory(): ConsumerFactory<String, Any> {
         return DefaultKafkaConsumerFactory(getConfig())
@@ -27,12 +26,13 @@ class ConsumerConfiguration constructor(
             li.consumerFactory = consumerFactory()
         }
 
-    private fun getConfig() = mapOf<String, Any>(
-        ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to kafkaProperty.getFullIp(),
-        ConsumerConfig.GROUP_ID_CONFIG to kafkaProperty.getGroupId(),
-        ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,
+    private fun getConfig() =
+        mapOf<String, Any>(
+            ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to kafkaProperty.getFullIp(),
+            ConsumerConfig.GROUP_ID_CONFIG to kafkaProperty.getGroupId(),
+            ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,
 //        ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,
-        ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to SendDataDeserializer::class.java,
-        ConsumerConfig.AUTO_OFFSET_RESET_CONFIG to "earliest"
-    )
+            ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to SendDataDeserializer::class.java,
+            ConsumerConfig.AUTO_OFFSET_RESET_CONFIG to "earliest",
+        )
 }

@@ -7,7 +7,7 @@ tasks.getByName("jar") {
     enabled = false
 }
 
-dependencies{
+dependencies {
     runtimeOnly("com.h2database:h2")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 

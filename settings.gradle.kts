@@ -1,7 +1,7 @@
 rootProject.name = "kotlin-kafka"
 
 include(
-    ":workspace:legacy"
+    ":workspace:legacy",
 )
 
 pluginManagement {

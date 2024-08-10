@@ -1,8 +1,8 @@
 package com.excample.legacy.app
 
-import com.excample.legacy.infra.topic.TopicNames.Companion.testKey
-import com.excample.legacy.infra.topic.TopicNames.Companion.testTopicName
 import com.excample.legacy.app.dto.SendData
+import com.excample.legacy.infra.topic.TopicNames.Companion.TEST_KEY
+import com.excample.legacy.infra.topic.TopicNames.Companion.TEST_TOPIC_NAME
 import com.excample.legacy.utils.convertOf
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.kafka.listener.adapter.ConsumerRecordMetadata
@@ -13,19 +13,18 @@ import java.util.concurrent.CountDownLatch
 
 @Component
 class MessageConsumer {
-
     private val latch: CountDownLatch = CountDownLatch(1)
 
     private var payload: SendData? = null
 
     @KafkaListener(
-        id = testKey,
-        topics = [testTopicName]
+        id = TEST_KEY,
+        topics = [TEST_TOPIC_NAME],
     )
     fun testMessageConsumer(
         message: SendData,
         @Header(name = KafkaHeaders.KEY, required = false) key: String,
-        consumerRecordMetadata: ConsumerRecordMetadata
+        consumerRecordMetadata: ConsumerRecordMetadata,
     ) {
         payload = message
 
@@ -35,7 +34,9 @@ class MessageConsumer {
 
         val time = convertOf(consumerRecordMetadata.timestamp())
 
-        println("payload : ${message.getName()} \n key : $key \n partition : $partition \n topic : $topic \n time : $time")
+        println(
+            "payload : ${message.getName()} \n key : $key \n partition : $partition \n topic : $topic \n time : $time",
+        )
 
         latch.countDown()
     }
