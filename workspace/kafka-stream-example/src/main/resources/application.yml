@@ -1,0 +1,25 @@
+spring:
+    application:
+        name: kafka-stream-example
+
+    cloud:
+        stream:
+            kafka:
+                binder:
+                    brokers: localhost:9092
+
+
+            bindings:
+                firstInput|secondInput-in-0:
+                    destination: cloud-stream
+
+                basicProducer-out-0:
+                    destination: cloud-stream
+                    content-type: application/json
+
+            function:
+                definition: basicProducer;firstInput|secondInput;
+
+server:
+    shutdown: graceful
+
