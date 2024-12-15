@@ -27,7 +27,10 @@ spring:
                     group: ${spring.config.activate.on-profile}.${spring.application.name}
                     destination: chat # 토픽
                     consumer:
-                      max-attempts: 3
+                      max-attempts: 2
+                      back-off-initial-interval: 1000
+                      back-off-multiplier: 2.0
+                      back-off-max-interval: 5000
 
                 # consumer
                 basicConsumer2-in-0:

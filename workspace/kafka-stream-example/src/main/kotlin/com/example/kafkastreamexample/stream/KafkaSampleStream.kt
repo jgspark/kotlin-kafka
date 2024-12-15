@@ -28,4 +28,13 @@ class KafkaSampleStream {
     fun basicConsumer2() = Consumer<String> {
         log.info { "basicConsumer2 Work ==> $it" }
     }
+
+    private fun error(it: String) {
+        val array = it.split("-")
+        val num = array[2].toInt()
+        if (num % 2 == 0) {
+            log.warn { "BackOffException Recode:${it} And Num:${num}" }
+            throw RuntimeException("Test Back-Off Ok")
+        }
+    }
 }
