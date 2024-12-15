@@ -20,7 +20,12 @@ class KafkaSampleStream {
     }
 
     @Bean
-    fun basicProducer() = Consumer<String> {
-        log.info { "work kafka stream $it" }
+    fun basicConsumer() = Consumer<String> {
+        log.info { "basicConsumer Work ==> $it" }
+    }
+
+    @Bean
+    fun basicConsumer2() = Consumer<String> {
+        log.info { "basicConsumer2 Work ==> $it" }
     }
 }

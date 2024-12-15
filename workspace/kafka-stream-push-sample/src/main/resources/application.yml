@@ -1,0 +1,25 @@
+spring:
+    application.name: kafka-stream-push-sample
+
+    cloud:
+        stream:
+            default:
+                default-binder: local-kafka
+
+            binders:
+                # Kafka 별 세팅
+                local-kafka:
+                    type: kafka
+                    environment:
+                        spring.cloud.stream.kafka.binder.broker: localhost:9092
+
+            bindings:
+                # producer
+                basicProducer-out-0:
+                    binder: local-kafka
+                    destination: chat # 토픽
+                    content-type: application/json
+
+server:
+    shutdown: graceful
+

@@ -1,4 +1,4 @@
-package com.example.kafkastreamexample.producer
+package com.example.kafkastreampushsample.producer
 
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.springframework.cloud.stream.function.StreamBridge
@@ -11,16 +11,18 @@ class BasicProducerClient(
     private val streamBridge: StreamBridge
 ) {
 
-    private val testGroup = "TEST-1"
+    private val testGroup = "TEST-202"
 
     private var count = 0
 
     fun send() {
         log.info { "work send topic - start" }
+        val message = "$testGroup-${count++}"
         streamBridge.send(
             "basicProducer-out-0",
-            "$testGroup-${count++}"
+            message
         )
+        log.info { "Send Message $message" }
         log.info { "work send topic - end" }
     }
 }

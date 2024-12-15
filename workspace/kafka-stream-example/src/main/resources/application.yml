@@ -1,47 +1,62 @@
 spring:
     application.name: kafka-stream-example
 
-    #    config:
-    #      activate:
-    #          on-profile: default
-
     cloud:
         stream:
             default:
                 default-binder: local-kafka
 
             binders:
+                # Kafka 별 세팅
                 local-kafka:
                     type: kafka
                     environment:
                         spring.cloud.stream.kafka.binder.broker: localhost:9092
 
             bindings:
-                # producer
-                basicProducer-out-0:
-                    binder: local-kafka
-                    destination: chat # 토픽
-                    content-type: application/json
+
+#                # producer
+#                basicProducer-out-0:
+#                    binder: local-kafka
+#                    destination: chat # 토픽
+#                    content-type: application/json
 
                 # consumer
-                basicProducer-in-0:
+                basicConsumer-in-0:
                     binder: local-kafka
                     group: ${spring.config.activate.on-profile}.${spring.application.name}
                     destination: chat # 토픽
                     consumer:
                       max-attempts: 3
 
+                # consumer
+                basicConsumer2-in-0:
+                    binder: local-kafka
+                    group: ${spring.config.activate.on-profile}.${spring.application.name}-2
+                    destination: chat # 토픽
+                    consumer:
+                        max-attempts: 3
+
             # kafka setting
             kafka:
                 bindings:
-                    basicProducer-in-0:
+
+                    basicConsumer2-out-0:
                         consumer:
+                          # start-offset: latest
+                          start-offset: earliest
+                          ack-mode: record
+
+                    basicConsumer-out-0:
+                        consumer:
+                            # 레코드 단위로 commit을 진행
                             ack-mode: record
 
         function:
-            definition:  basicProducer;
+            definition:  basicConsumer;basicConsumer2;
 
 
 server:
     shutdown: graceful
+    port: 8081
 

@@ -2,7 +2,8 @@ rootProject.name = "kotlin-kafka"
 
 include(
     ":workspace:legacy",
-    ":workspace:kafka-stream-example"
+    ":workspace:kafka-stream-example",
+    ":workspace:kafka-stream-push-sample"
 )
 
 pluginManagement {
