@@ -27,6 +27,7 @@ class KafkaSampleStream {
     @Bean
     fun basicConsumer2() = Consumer<String> {
         log.info { "basicConsumer2 Work ==> $it" }
+        error(it)
     }
 
     private fun error(it: String) {

@@ -12,6 +12,7 @@ spring:
                     type: kafka
                     environment:
                         spring.cloud.stream.kafka.binder.broker: localhost:9092
+                        spring.main.source: com.example.kafkastreamexample.stream.KafkaStreamRetryTemplate
 
             bindings:
 
@@ -38,6 +39,7 @@ spring:
                     group: ${spring.config.activate.on-profile}.${spring.application.name}-2
                     destination: chat # 토픽
                     consumer:
+                        retryTemplateName: basicConsumer2RetryTemplate
                         max-attempts: 3
 
             # kafka setting
