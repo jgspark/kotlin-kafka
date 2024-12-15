@@ -1,24 +1,46 @@
 spring:
-    application:
-        name: kafka-stream-example
+    application.name: kafka-stream-example
+
+    #    config:
+    #      activate:
+    #          on-profile: default
 
     cloud:
         stream:
-            kafka:
-                binder:
-                    brokers: localhost:9092
+            default:
+                default-binder: local-kafka
 
+            binders:
+                local-kafka:
+                    type: kafka
+                    environment:
+                        spring.cloud.stream.kafka.binder.broker: localhost:9092
 
             bindings:
-                firstInput|secondInput-in-0:
-                    destination: cloud-stream
-
+                # producer
                 basicProducer-out-0:
-                    destination: cloud-stream
+                    binder: local-kafka
+                    destination: chat # 토픽
                     content-type: application/json
 
-            function:
-                definition: basicProducer;firstInput|secondInput;
+                # consumer
+                basicProducer-in-0:
+                    binder: local-kafka
+                    group: ${spring.config.activate.on-profile}.${spring.application.name}
+                    destination: chat # 토픽
+                    consumer:
+                      max-attempts: 3
+
+            # kafka setting
+            kafka:
+                bindings:
+                    basicProducer-in-0:
+                        consumer:
+                            ack-mode: record
+
+        function:
+            definition:  basicProducer;
+
 
 server:
     shutdown: graceful

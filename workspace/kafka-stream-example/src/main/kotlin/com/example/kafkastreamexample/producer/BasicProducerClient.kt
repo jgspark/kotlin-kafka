@@ -15,7 +15,7 @@ class BasicProducerClient(
         log.info { "work send topic - start" }
         streamBridge.send(
             "basicProducer-out-0",
-            100
+            200
         )
         log.info { "work send topic - end" }
     }

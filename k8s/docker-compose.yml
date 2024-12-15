@@ -1,53 +1,22 @@
 version: '2'
 services:
-    # zookeeper setting
     zookeeper:
+        container_name: local-zookeeper
         image: wurstmeister/zookeeper:3.4.6
-        container_name: zookeeper
-        restart: always
-        networks:
-            - default
         ports:
             - "2181:2181"
-    # kafka setting
     kafka:
+        container_name: local-kafka
         image: wurstmeister/kafka:2.13-2.8.1
-        container_name: kafka
-        networks:
-            - default
-        ports:
-            - "9092:9092"
         depends_on:
             - zookeeper
+        ports:
+            - "9092:9092"
         environment:
-            # 카프카 토픽 설정
-            # TopicName:Partition_Num:Replica_Num,
-            # Topic명:Partition개수:Replica개수
-            #  https://akageun.github.io/2019/09/10/docker-compose-local-kafka.html
-#            KAFKA_CREATE_TOPICS: "test:1:1;cloud-stream:1:1"
-            KAFKA_CREATE_TOPICS: "cloud-stream:1:1"
-            # 카프카 호스트 이름?
-            # #카프카 프로듀서, 컨슈머에게 노출할 주소. 설정하지 않을 경우 디폴트로 listners 설정이 적용된다.
-            KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
-            # 주키퍼 커넥션 ip:port
+            KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1 # 싱글 브로커 환경
+            KAFKA_ADVERTISED_PORT: 9092
+            # Topic 명 : Partition 개수 : Replica 개수
+            KAFKA_CREATE_TOPICS: "chat:1:1"
             KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
-
-#    kafka-ui:
-#        image: provectuslabs/kafka-ui
-#        container_name: kafka-ui
-#        restart: always
-#        networks:
-#            - default
-#        depends_on:
-#            - kafka
-#        ports:
-#            - "9000:8080"
-#        environment:
-#            # Log 레벨
-#            LOGGING_LEVEL_ROOT: debug
-#            KAFKA_CLUSTERS_0_NAME: local
-#            KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: localhost:9092
-#            KAFKA_CLUSTERS_0_ZOOKEEPER: localhost:2181
-#
